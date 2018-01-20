@@ -5,10 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Learn ASL</title>
-<script src="bundle.js" defer></script>
+<script src="../bundle.js" defer></script>
+<script src="/webcamtest.js" defer></script>
+
 </head>
 <body>
   <h1>hello world</h1>
   <div id="main"></div>
+
+
+  <div class="webcam">
+    <video id="webcam" width="400" height="300"></video>
+    <a href="#" id="capture" class="webcam-capture-button">Capture and Submit</a>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <!-- <img id="photo" src="http://placekitten.com/g/400/300" alt="Your sign submission here"> -->
+  </div>
+
 </body>
 </html>

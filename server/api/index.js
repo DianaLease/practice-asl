@@ -21,7 +21,7 @@ router.post('/practice', (req, res, next) => {
 })
 
 //TEST
-let letterCImg = 'https://previews.123rf.com/images/thisboy/thisboy1004/thisboy100400029/28583497-finger-spelling-the-alphabet-letter-c-in-american-sign-language-asl-Stock-Photo.jpg'
+let letterCImg = 'http://www.childstoryhour.com/images/coloring/c.jpg'
 predict('aslalphabet', letterCImg);
 
 
