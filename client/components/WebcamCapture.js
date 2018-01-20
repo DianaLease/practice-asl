@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import WebcamStream from './WebcamStream';
+import CapturedImage from './CapturedImage';
 
 class WebcamCapture extends Component {
   constructor(props) {
@@ -8,7 +10,7 @@ class WebcamCapture extends Component {
       camSpecs: { audio: false, video: { width: 400, height: 300 } }
     }
 
-    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleCaptureClick = this.handleCaptureClick.bind(this);
     this.captureImage = this.captureImage.bind(this);
     this.clearPhoto = this.clearPhoto.bind(this);
 
@@ -28,7 +30,9 @@ class WebcamCapture extends Component {
 
     getUserMedia(camSpecs)
       .then((stream) => {
-        const video = document.querySelector('webcam');
+
+        const video = document.getElementById('webcam');
+        console.log(video);
         const vendorURL = window.URL || window.webkitURL;
 
         video.src = vendorURL.createObjectURL(stream);
@@ -41,10 +45,10 @@ class WebcamCapture extends Component {
     this.clearPhoto();
   }
 
-  takePicture() {
-    const canvas = document.querySelector('canvas'),
+  captureImage() {
+    const canvas = document.getElementById('canvas'),
           context = canvas.getContext('2d'),
-          video = document.querySelector('video'),
+          video = document.getElementById('webcam'),
           photo = document.getElementById('photo'),
           { width, height } = this.state.camSpecs.video;
 
@@ -54,10 +58,11 @@ class WebcamCapture extends Component {
 
     const imgData = canvas.toDataURL('image/png');
     photo.setAttribute('src', imgData);
+    console.log(imgData)
   }
 
   clearPhoto() {
-    const canvas = document.querySelector('canvas'),
+    const canvas = document.getElementById('canvas'),
           photo = document.getElementById('photo'),
           context = canvas.getContext('2d'),
           { width, height } = this.state.camSpecs.video;
@@ -69,9 +74,19 @@ class WebcamCapture extends Component {
     photo.setAttribute('src', imgData);
   }
 
-  handleStartClick(event) {
+  handleCaptureClick(event) {
     event.preventDefault();
     this.captureImage();
+  }
+
+  render() {
+    return (
+      <div className="capture" >
+        <WebcamStream handleCaptureClick={this.handleCaptureClick} />
+        <canvas id="canvas" hidden></canvas>
+        <CapturedImage />
+      </div>
+    )
   }
 
 }
