@@ -7,7 +7,8 @@ class WebcamCapture extends Component {
     super(props)
 
     this.state = {
-      camSpecs: { audio: false, video: { width: 400, height: 300 } }
+      camSpecs: { audio: false, video: { width: 400, height: 300 } },
+      bestMatch: null
     }
 
     this.handleCaptureClick = this.handleCaptureClick.bind(this);
@@ -56,9 +57,14 @@ class WebcamCapture extends Component {
     canvas.height = height;
     context.drawImage(video, 0, 0, width, height);
 
-    const imgData = canvas.toDataURL('image/png');
+    const imgData = canvas.toDataURL('image/png')
+    const rawImgData = canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, '');
     photo.setAttribute('src', imgData);
-    console.log(imgData)
+
+    predict('aslalphabet', rawImgData)
+      .then(bestMatch => this.setState({
+        bestMatch
+    }))
   }
 
   clearPhoto() {
@@ -85,10 +91,26 @@ class WebcamCapture extends Component {
         <WebcamStream handleCaptureClick={this.handleCaptureClick} />
         <canvas id="canvas" hidden></canvas>
         <CapturedImage />
+        {/* <AttemptCorrectness bestMatch={this.state.bestMatch}/> */}
+        <h2>{this.state.bestMatch}</h2>
       </div>
     )
   }
 
+}
+
+// Predict logic helper
+
+const clarifaiApp = require('../../server/clarifaiApp')
+
+//  predicts the ASL sign of an image by passing in a url and the clarifai model
+function predict(model, imgUrl) {
+  return clarifaiApp.models.predict(model, imgUrl)
+    .then(res => {
+      const bestMatch = res.rawData.outputs[0].data.concepts[0].name;
+      console.log('Best Match:', bestMatch);
+      return bestMatch
+    })
 }
 
 

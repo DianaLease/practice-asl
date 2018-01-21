@@ -21,8 +21,8 @@ router.post('/practice', (req, res, next) => {
 })
 
 //TEST
-let letterCImg = 'http://www.childstoryhour.com/images/coloring/c.jpg'
-predict('aslalphabet', letterCImg);
+// let letterCImg = 'http://www.childstoryhour.com/images/coloring/c.jpg'
+// predict('aslalphabet', letterCImg);
 
 
 //if not one of the routes above, send 404
