@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+
+h1 {
+  color: #3b004d;
+}
+
+h2 {
+  color: #000000;
+}
+
+h1,
+h2,
+h3,
+p,
+nav {
+  font-family: "Saira Extra Condensed", sans-serif;
+}
+
+

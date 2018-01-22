@@ -1,11 +1,37 @@
 {
   "name": "learn-asl",
   "version": "1.0.0",
-  "description": "",
+  "description": "A website to facilitate learning American Sign Language",
   "main": "index.js",
   "scripts": {
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "start": "node server",
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "clarifai": "^2.6.0",
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2",
+    "semantic-ui-react": "^0.77.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "morgan": "^1.9.0",
+    "webpack": "^3.10.0",
+    "webpack-livereload-plugin": "^1.0.0"
+  }
 }
