@@ -1,5 +1,5 @@
 # Practice ASL
 
-A website for studying and practicing American Sign Langauge alphabet via an interactice app that uses your webcam and image recognition software.
+An interactive website for practicing the American Sign Language alphabet, using your webcam and image recognition software.
 
-This app was created in a a few short days for Fullstack Academy's stackathon.
+This project was created in a few short days for Fullstack Academy's stackathon.
